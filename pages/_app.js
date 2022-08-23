@@ -6,7 +6,7 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
-
+import { ThemeProvider } from 'next-themes'
 import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
 
@@ -30,6 +30,7 @@ const wagmiClient = createClient({
 
 export default function MyApp({ Component, pageProps }) {
   return (
+    <ThemeProvider>
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
       <ApolloProvider client={client}>
@@ -39,5 +40,6 @@ export default function MyApp({ Component, pageProps }) {
         </ApolloProvider>
       </RainbowKitProvider>
     </WagmiConfig>
+    </ThemeProvider>
   );
 }
